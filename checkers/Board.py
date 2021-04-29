@@ -9,8 +9,6 @@ class Board:
     def _init(self):
         self.board = self._create_board()
         self.white_left = self.black_left = 16
-        self.white_pieces = self._get_white_pieces(self.board)
-        self.black_pieces = self._get_black_pieces(self.board)
     
     def reset(self):
         self._init()
@@ -27,24 +25,6 @@ class Board:
                 else:
                     board[row].append(0)
         return board
-    
-    def _get_white_pieces(self, board):
-        white_pieces = []
-        for row in range(ROWS):
-            for piece in board[row]:
-                if piece:
-                    if piece.color == WHITE:
-                        white_pieces.append(piece)
-        return white_pieces
-            
-    def _get_black_pieces(self, board):
-        black_pieces = []
-        for row in range(ROWS):
-            for piece in board[row]:
-                if piece:
-                    if piece.color == BLACK:
-                        black_pieces.append(piece)
-        return black_pieces
     
     def move(self, piece, row, col):
         self.board[row][col], self.board[piece.row][piece.col] = self.board[piece.row][piece.col], self.board[row][col]
